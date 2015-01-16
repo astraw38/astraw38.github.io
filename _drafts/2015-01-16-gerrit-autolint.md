@@ -41,7 +41,7 @@ Configure your Jenkins Job to use Gerrit Trigger:
     5. In the Build section, use 'Execute Shell':
     	a. 'python gpylinter.py'
         
-## Gerrit-Pylinter
+## [Gerrit-Pylinter](https://github.com/astraw38/gerrit-pylinter)
 Gerrit-pylinter is a rather simple python script I wrote to do the following:
 
 1. Get a list of files changed between the active gerrit branch and the specified gerrit review.
