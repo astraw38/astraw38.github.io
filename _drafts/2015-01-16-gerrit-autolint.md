@@ -9,7 +9,6 @@ As many programmers have found, static analysis and sticking to a style guide is
 To assist with this, I decided to integrate our Jenkins server with Gerrit to automatically run pylint (our choice for static analysis - not perfect, but it helps) on incoming reviews and post results. There's a handful of guides around the web that will teach you how to setup Jenkins to run a job on gerrit events, but not a lot of information on custom messages back to Gerrit, or automating static analysis. 
 
 ### Integrating Jenkins and Gerrit
-#### Gerrit Trigger
 Install plugins: Gerrit Trigger, GIT Plugin
 
 Configure Gerrit Trigger plugin:
@@ -41,9 +40,14 @@ Configure your Jenkins Job to use Gerrit Trigger:
         Choose 'Path' On the left dropdown, in the box put '**'. On the right, select 'Path' again, and '**' in the text box. 
     5. In the Build section, use 'Execute Shell':
     	a. 'python gpylinter.py'
-   
-   
-  
+        
+## Gerrit-Pylinter
+Gerrit-pylinter is a rather simple python script I wrote to do the following:
 
+1. Get a list of files changed between the active gerrit branch and the specified gerrit review.
+2. Pylint the original files in the active gerrit branch.
+3. Pylint the changed files. 
+4. Analyze the results according to specified validators.
+5. Post the results of the validation to gerrit via SSH (+1/-1 score assigned, including a message). 
 
-
+I'll be continuing to work on it, hopefully even adding the option to include other Validators (for different coding languages) - or at the least creating a structure for that to be easily added. 
