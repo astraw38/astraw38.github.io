@@ -26,7 +26,21 @@ Configure Gerrit Trigger plugin:
 Configure your Jenkins Job to use Gerrit Trigger:
 	1. Create a new Jenkins Job
     2. Under Source Code Management, select 'Git'
-    	a. 
+    	a. Set 'repository URL' to your Gerrit host, including your project (<protocol>://<username>@<hostname>:<port>/project/path
+        b. Select your credentials that you use to connect to gerrit (we use SSH)
+        c. Click 'Advanced'
+        d. Set 'Refspec' to '$GERRIT_REFSPEC'
+    	e. Set 'Branch Specifier' to '$GERRIT_BRANCH'
+        f. Click 'Add', then select 'choosing strategy', and change it to 'Gerrit Trigger'
+    3. Select 'Gerrit Event' as a Build Trigger
+    4. Under 'Gerrit Trigger' Section:
+    	a. Select your server you created earlier under 'Choose a Server'
+        b. Select 'Silent Mode'
+        c. Choose you want to trigger on (We use Patchset Created, excluding trivial rebases and 'no code changes'). 
+        d. Beneath 'Dynamic Trigger Configuration' --- DO NOT SELECT THE CHECKBOX:
+        Choose 'Path' On the left dropdown, in the box put '**'. On the right, select 'Path' again, and '**' in the text box. 
+    5. In the Build section, use 'Execute Shell':
+    	a. 'python gpylinter.py'
    
    
   
