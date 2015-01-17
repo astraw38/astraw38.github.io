@@ -41,8 +41,8 @@ Configure your Jenkins Job to use Gerrit Trigger:
     5. In the Build section, use 'Execute Shell':
     	a. 'python gpylinter.py'
         
-## [Gerrit-Pylinter](https://github.com/astraw38/gerrit-pylinter)
-Gerrit-pylinter is a rather simple python script I wrote to do the following:
+## [Gerritlinter](https://github.com/astraw38/gerritlinter)
+Gerritlinter is a rather simple python script I wrote to do the following:
 
 1. Get a list of files changed between the active gerrit branch and the specified gerrit review.
 2. Pylint the original files in the active gerrit branch.
@@ -50,6 +50,6 @@ Gerrit-pylinter is a rather simple python script I wrote to do the following:
 4. Analyze the results according to specified validators.
 5. Post the results of the validation to gerrit via SSH (+1/-1 score assigned, including a message). 
 
-Gerrit-Pylinter uses the environmental variables set by Gerrit Trigger to do almost all of the configuration. You can still use it via command-line (with options!) for manual testing. 
+GerritLinter uses the environmental variables set by Gerrit Trigger to do almost all of the configuration. You can still use it via command-line (with options!) for manual testing. 
 
 I'll be continuing to work on it, hopefully even adding the option to include other Validators (for different coding languages) - or at the least creating a structure for that to be easily added. 
