@@ -38,9 +38,11 @@ Configure your Jenkins Job to use Gerrit Trigger:
         b. Select 'Silent Mode'
         c. Choose you want to trigger on (We use Patchset Created, excluding trivial rebases and 'no code changes'). 
 ![](http://i.imgur.com/tR08BFM.png)
+
         d. Beneath 'Dynamic Trigger Configuration' --- DO NOT SELECT THE CHECKBOX:
-        Choose 'Path' On the left dropdown, in the box put '**'. On the right, select 'Path' again, and '**' in the text box. 
+        Choose 'Path' On the left dropdown, in the box put '**'. On the right, select 'Path' again,   and '**' in the text box. 
  ![](http://i.imgur.com/AkzmSCV.png)
+ 
     5. In the Build section, use 'Execute Shell':
     	a. 'python gpylinter.py'
         
