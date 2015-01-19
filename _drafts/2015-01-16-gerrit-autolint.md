@@ -48,7 +48,7 @@ Configure your Jenkins Job to use Gerrit Trigger:
     5. In the Build section, use 'Execute Shell':
     	a. 'python gpylinter.py'
         
-## [Gerritlinter](https://github.com/astraw38/gerritlinter)
+## [GerritLinter](https://github.com/astraw38/gerritlinter)
 Gerritlinter is a python package to assist with automatic code reviews. It does the following:
 
 1. Get a list of files changed between the active gerrit branch and the specified gerrit review.
