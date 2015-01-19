@@ -21,7 +21,9 @@ Configure Gerrit Trigger plugin:
     7. Major parts to fill out: 'Hostname', 'Frontend URL', 'Username'
     8. Click 'Test Connection'
     9. If connection fails, try connecting via terminal to your gerrit host (using SSH).
+![](http://i.imgur.com/QUM1zz0.png)   
    
+  
 Configure your Jenkins Job to use Gerrit Trigger:
 	1. Create a new Jenkins Job
     2. Under Source Code Management, select 'Git'
