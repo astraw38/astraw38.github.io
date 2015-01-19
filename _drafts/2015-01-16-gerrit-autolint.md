@@ -31,6 +31,7 @@ Configure your Jenkins Job to use Gerrit Trigger:
         d. Set 'Refspec' to '$GERRIT_REFSPEC'
     	e. Set 'Branch Specifier' to '$GERRIT_BRANCH'
         f. Click 'Add', then select 'choosing strategy', and change it to 'Gerrit Trigger'
+        
     3. Select 'Gerrit Event' as a Build Trigger
     4. Under 'Gerrit Trigger' Section:
     	a. Select your server you created earlier under 'Choose a Server'
@@ -52,4 +53,4 @@ Gerritlinter is a rather simple python script I wrote to do the following:
 
 GerritLinter uses the environmental variables set by Gerrit Trigger to do almost all of the configuration. You can still use it via command-line (with options!) for manual testing. 
 
-I'll be continuing to work on it, hopefully even adding the option to include other Validators (for different coding languages) - or at the least creating a structure for that to be easily added. 
+I'll be continuing to work on it, hopefully even adding the option to include other Validators (for different coding languages) - or at the least creating a structure for that to be easily added.
