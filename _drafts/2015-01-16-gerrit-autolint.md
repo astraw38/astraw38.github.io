@@ -11,7 +11,7 @@ To assist with this, I decided to integrate our Jenkins server with Gerrit to au
 ### Integrating Jenkins and Gerrit
 Install plugins: Gerrit Trigger, GIT Plugin
 
-Configure Gerrit Trigger plugin:
+#### Configure Gerrit Trigger plugin:
 
 1. Click 'Manage Jenkins' on the left at the Jenkins Dashboard
 2. Click 'Gerrit Trigger'
@@ -25,10 +25,12 @@ Configure Gerrit Trigger plugin:
 ![](http://i.imgur.com/QUM1zz0.png)   
    
   
-Configure your Jenkins Job to use Gerrit Trigger:
+#### Configure your Jenkins Job to use Gerrit Trigger:
 1. Create a new Jenkins Job
 2. Under Source Code Management, select 'Git'
-3. Set 'repository URL' to your Gerrit host, including your project (<protocol>://<username>@<hostname>:<port>/project/path
+3. Set 'repository URL' to your Gerrit host, including your project
+	(_protocol_://_username_@_hostname_:_port_/_project_/_path_)
+       ex: ssh://tester@gerrit_host:29418/Auto/automation_test
 4. Select your credentials that you use to connect to gerrit (we use SSH)
 5. Click 'Advanced'
 6. Set 'Refspec' to '$GERRIT_REFSPEC'
@@ -38,6 +40,7 @@ Configure your Jenkins Job to use Gerrit Trigger:
 9. Select 'Gerrit Event' as a Build Trigger
 
 #### Under 'Gerrit Trigger' Section:
+    Still in the same jenkins job configuration
 1. Select your server you created earlier under 'Choose a Server'
 2. Select 'Silent Mode'
 3. Choose you want to trigger on (We use Patchset Created, excluding trivial rebases and 'no code changes'). 
