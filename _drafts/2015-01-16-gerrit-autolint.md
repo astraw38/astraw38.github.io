@@ -12,41 +12,42 @@ To assist with this, I decided to integrate our Jenkins server with Gerrit to au
 Install plugins: Gerrit Trigger, GIT Plugin
 
 Configure Gerrit Trigger plugin:
-	1. Click 'Manage Jenkins' on the left at the Jenkins Dashboard
-    2. Click 'Gerrit Trigger'
-    3. Click 'Add New Server' on the left
-    4. Type in a name for your server, select 'Gerrit Server with Default Config' and click "Ok"
-    5. Fill out the fields with your Gerrit host information. 
-    6. You'll need to copy over your Jenkins ssh key into Gerrit (and provide proper access rights in gerrit! 'Stream Events: ALLOW for Event Streaming Users')
-    7. Major parts to fill out: 'Hostname', 'Frontend URL', 'Username'
-    8. Click 'Test Connection'
-    9. If connection fails, try connecting via terminal to your gerrit host (using SSH).
+
+1. Click 'Manage Jenkins' on the left at the Jenkins Dashboard
+2. Click 'Gerrit Trigger'
+3. Click 'Add New Server' on the left
+4. Type in a name for your server, select 'Gerrit Server with Default Config' and click "Ok"
+5. Fill out the fields with your Gerrit host information. 
+6. You'll need to copy over your Jenkins ssh key into Gerrit (and provide proper access rights in gerrit! 'Stream Events: ALLOW for Event Streaming Users')
+7. Major parts to fill out: 'Hostname', 'Frontend URL', 'Username'
+8. Click 'Test Connection'
+9. If connection fails, try connecting via terminal to your gerrit host (using SSH).
 ![](http://i.imgur.com/QUM1zz0.png)   
    
   
 Configure your Jenkins Job to use Gerrit Trigger:
-	1. Create a new Jenkins Job
-    2. Under Source Code Management, select 'Git'
-    	a. Set 'repository URL' to your Gerrit host, including your project (<protocol>://<username>@<hostname>:<port>/project/path
-        b. Select your credentials that you use to connect to gerrit (we use SSH)
-        c. Click 'Advanced'
-        d. Set 'Refspec' to '$GERRIT_REFSPEC'
-    	e. Set 'Branch Specifier' to '$GERRIT_BRANCH'
-        f. Click 'Add', then select 'choosing strategy', and change it to 'Gerrit Trigger'
+1. Create a new Jenkins Job
+2. Under Source Code Management, select 'Git'
+3. Set 'repository URL' to your Gerrit host, including your project (<protocol>://<username>@<hostname>:<port>/project/path
+4. Select your credentials that you use to connect to gerrit (we use SSH)
+5. Click 'Advanced'
+6. Set 'Refspec' to '$GERRIT_REFSPEC'
+7. Set 'Branch Specifier' to '$GERRIT_BRANCH'
+8. Click 'Add', then select 'choosing strategy', and change it to 'Gerrit Trigger'
 ![](http://i.imgur.com/jmexAle.png)        
-    3. Select 'Gerrit Event' as a Build Trigger
-    4. Under 'Gerrit Trigger' Section:
-    	a. Select your server you created earlier under 'Choose a Server'
-        b. Select 'Silent Mode'
-        c. Choose you want to trigger on (We use Patchset Created, excluding trivial rebases and 'no code changes'). 
-![](http://i.imgur.com/tR08BFM.png)
+9. Select 'Gerrit Event' as a Build Trigger
 
-        d. Beneath 'Dynamic Trigger Configuration' --- DO NOT SELECT THE CHECKBOX:
+#### Under 'Gerrit Trigger' Section:
+1. Select your server you created earlier under 'Choose a Server'
+2. Select 'Silent Mode'
+3. Choose you want to trigger on (We use Patchset Created, excluding trivial rebases and 'no code changes'). 
+![](http://i.imgur.com/tR08BFM.png)
+4. Beneath 'Dynamic Trigger Configuration' --- DO NOT SELECT THE CHECKBOX:
         Choose 'Path' On the left dropdown, in the box put '**'. On the right, select 'Path' again,   and '**' in the text box. 
  ![](http://i.imgur.com/AkzmSCV.png)
  
-    5. In the Build section, use 'Execute Shell':
-    	a. 'python gpylinter.py'
+#### In the Build section:
+    Use 'execute shell': 'python gpylinter.py'
         
 ## [GerritLinter](https://github.com/astraw38/gerritlinter)
 GerritLinter is a python package to assist with automatic code reviews. It does the following:
@@ -62,4 +63,4 @@ GerritLinter uses the environmental variables set by Gerrit Trigger to do almost
 
 GerritLinter provides the ability to plugin your own Linter or Validator classes. All you need to do is run LintFactory.register_linter(NewLinter()) or ValidatorFactory.register_validator(NewValidator()). When you run 'run_linters()' or 'run_validators()', it'll pick them up and use them. Your new Linters should derive from BaseLinter, and your new Validators should derive from BaseValidator.
 
-You can also add a checkers to validators, which are simple functions to compare lint data that are passed to the validator. 
+You can also add a checkers to validators, which are simple functions to compare lint data that are passed to the validator.
