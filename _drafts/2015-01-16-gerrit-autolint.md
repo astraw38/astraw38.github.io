@@ -49,7 +49,7 @@ Configure your Jenkins Job to use Gerrit Trigger:
     	a. 'python gpylinter.py'
         
 ## [GerritLinter](https://github.com/astraw38/gerritlinter)
-Gerritlinter is a python package to assist with automatic code reviews. It does the following:
+GerritLinter is a python package to assist with automatic code reviews. It does the following:
 
 1. Get a list of files changed between the active gerrit branch and the specified gerrit review.
 2. Lint the original files in the active gerrit branch.
