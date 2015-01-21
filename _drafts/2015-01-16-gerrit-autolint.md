@@ -8,6 +8,8 @@ Static analysis and sticking to a style guide helps everyone stay on the same pa
 
 To get everyone onboard, I integrated our Jenkins server with Gerrit to automatically run pylint (our choice for static analysis - not perfect, but it helps) on incoming reviews and post results. There're a handful of guides around the web that teach how to setup Jenkins to run a job on Gerrit events, but not a lot of information on custom messages back to Gerrit, or automating static analysis.
 
+Let's get started
+
 ### Integrating Jenkins and Gerrit
 Install plugins: Gerrit Trigger, GIT Plugin
 
