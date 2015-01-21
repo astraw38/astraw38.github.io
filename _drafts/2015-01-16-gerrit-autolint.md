@@ -62,8 +62,8 @@ Glint is a python package to assist with automatic code reviews. It does the fol
 5. Analyze the results according to specified validators.
 6. Post the results of the validation to gerrit via SSH (+1/-1 score assigned, including a message). 
 
-GerritLinter uses the environmental variables set by Gerrit Trigger to do almost all of the configuration. You can still use it via command-line (with options!) for manual testing. 
+Glint uses the environmental variables set by Gerrit Trigger to do almost all of the configuration. You can still use it via command-line (with options!) for manual testing. 
 
-GerritLinter provides the ability to plugin your own Linter or Validator classes. All you need to do is run LintFactory.register_linter(NewLinter()) or ValidatorFactory.register_validator(NewValidator()). When you run 'run_linters()' or 'run_validators()', it'll pick them up and use them. Your new Linters should derive from BaseLinter, and your new Validators should derive from BaseValidator.
+Glint provides the ability to plugin your own Linter or Validator classes. All you need to do is run LintFactory.register_linter(NewLinter()) or ValidatorFactory.register_validator(NewValidator()). When you run 'run_linters()' or 'run_validators()', it'll pick them up and use them. Your new Linters should derive from BaseLinter, and your new Validators should derive from BaseValidator.
 
 You can also add a checkers to validators, which are simple functions to compare lint data that are passed to the validator.
