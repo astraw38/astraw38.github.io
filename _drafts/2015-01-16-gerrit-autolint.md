@@ -53,7 +53,7 @@ Install plugins: Gerrit Trigger, GIT Plugin
     Use 'execute shell': 'python gpylinter.py'
         
 ## [Glint](https://github.com/astraw38/Glint)
-Glint is a python package to assist with automatic code reviews. It does the following:
+Glint is a python package to assist with automatic code reviews. It provides the following tools:
 
 1. Get a list of files changed between the active gerrit branch and the specified gerrit review.
 2. Lint the original files in the active gerrit branch.
@@ -64,6 +64,5 @@ Glint is a python package to assist with automatic code reviews. It does the fol
 
 Glint uses the environmental variables set by Gerrit Trigger to do almost all of the configuration. You can still use it via command-line (with options!) for manual testing. 
 
-Glint provides the ability to plugin your own Linter or Validator classes. All you need to do is run LintFactory.register_linter(NewLinter()) or ValidatorFactory.register_validator(NewValidator()). When you run 'run_linters()' or 'run_validators()', it'll pick them up and use them. Your new Linters should derive from BaseLinter, and your new Validators should derive from BaseValidator.
 
-You can also add a checkers to validators, which are simple functions to compare lint data that are passed to the validator.
+You can also add a checkers to validators, which are simple functions to compare lint data that are passed to the validator. 
