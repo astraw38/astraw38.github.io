@@ -52,8 +52,8 @@ Install plugins: Gerrit Trigger, GIT Plugin
 #### In the Build section:
     Use 'execute shell': 'python gpylinter.py'
         
-## [GerritLinter](https://github.com/astraw38/gerritlinter)
-GerritLinter is a python package to assist with automatic code reviews. It does the following:
+## [Glint](https://github.com/astraw38/Glint)
+Glint is a python package to assist with automatic code reviews. It does the following:
 
 1. Get a list of files changed between the active gerrit branch and the specified gerrit review.
 2. Lint the original files in the active gerrit branch.
