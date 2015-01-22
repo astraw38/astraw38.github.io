@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 
 ## Automating Pylint via Jenkins and Gerrit
