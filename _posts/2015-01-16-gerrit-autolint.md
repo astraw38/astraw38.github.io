@@ -52,7 +52,7 @@ Install plugins: Gerrit Trigger, GIT Plugin
  ![](http://i.imgur.com/AkzmSCV.png)
  
 #### In the Build section:
-    Use 'execute shell': 'python gpylinter.py'
+    Use 'execute shell': 'gpylinter.py'
         
 ## [Lint](https://github.com/astraw38/Lint)
 Lint is a python package to assist with automatic code reviews. It provides the following tools:
