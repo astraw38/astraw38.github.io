@@ -6,13 +6,24 @@ I want to have different environment variables for each process/job in GNU Paral
 parallel will pick up the current environment variables, which means getting different env vars per-process was more complicated.
 Attempts 1-3 all were using environment variables as the command input (stored per-line in a file)
 
-Space delineated with `parallel 'export {}'` fails, created process with `a=1\ b=2` in the environment variables. 
+Space delineated with `parallel 'export {}'` fails, created processes with `a=1\ b=2` in the environment variables. 
 ```bash
 a=1 b=2
 a=3 b=4
 ```
+Example:
 
-Semi-colon delineated also fails for the same reason. 
+```bash
+[astraw@helios parallel]# cat test_envs | parallel --verbose --tagstring="Job #{#}:" 'export {}; echo a=$a - b=$b'
+export a=1\ b=2; echo a=$a - b=$b
+export a=3\ b=4; echo a=$a - b=$b
+export a=5\ b=6; echo a=$a - b=$b
+Job #1: a=1 b=2 - b=
+Job #2: a=3 b=4 - b=
+Job #3: a=5 b=6 - b=
+```
+
+Note how `b` is not set in any of the processes. Semi-colon delineated also fails for the same reason. 
 
 ## The solution
 
@@ -20,7 +31,7 @@ Create properties files!
 
 If you want to have X subprocesses, create X env files, with the desired environment variables space-separated on the first line. 
 
-Example `env_1`:
+`env_1`:
 ```bash
 a=1 b=1
 ```
