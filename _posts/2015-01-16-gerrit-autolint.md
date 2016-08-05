@@ -1,8 +1,8 @@
 ---
+title: Automating Pylint via Jenkins and Gerrit
+layout: post
 published: true
 ---
-
-## Automating Pylint via Jenkins and Gerrit
 
 Static analysis and sticking to a style guide helps everyone stay on the same page, especially when your team comes from diverse code backgrounds. Choosing a static analysis and style guide is the easy part, of course--sticking to it is another story altogether.
 

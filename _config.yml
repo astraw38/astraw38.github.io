@@ -1,37 +1,45 @@
 # general configuration
 url: http://astraw38.github.io
 baseurl: ''
+name: 'Python Test Blog #38'
+description: "Python & Linux automated testing"
+
+# URL of your avatar or profile pic (you could use your GitHub profile pic)
+avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png
 
 github: [metadata]
 kramdown:
  input: GFM
  hard_wrap: false
+ syntax_highlighter: rouge
+ syntax_highlighter_opts:
+  css_class: 'highlight'
+
+# Exclude these files from your production _site
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - CNAME
 gems:
- - jekyll-coffeescript
  - jekyll-paginate
- 
-# compass configuration
-compass:
-  # an avatar or logo (optional)
-  logo: "/images/compass.png"
-  # author will appear under the avatar (optional)
-  author: "Compass"
-  # tagline will appear under the title (optional)
-  tagline: "The <a href='http://jekyllrb.com'>Jekyll</a> theme for your personal landing page"
-  # if include_content is true, the contents of the content.html include will be
-  # added right above the generated item list, if present
-  include_content: true
-  # if include_analytics is true, the content of the analytics.html include will
-  # be added at the end of the <head> section. You can add your Google Analytics
-  # Tracking Code to that file.
-  include_analytics: false
+ - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
+ - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
+
 
 # Dependencies
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 
 # Permalinks
-permalink: pretty
+permalink: /:title/
 
 sass:
   sass_dir: _scss
+
+# Includes an icon in the footer for each username you enter
+footer-links:
+  github: astraw38
+  rss: hi # just type anything here for a working RSS icon
+  twitter: LuvlyOvipositor
