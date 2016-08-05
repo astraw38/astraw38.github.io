@@ -4,12 +4,11 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+I am a 5th year full time Python Automated Tester. 
+I work on various different operating systems, including xUbuntu, Debian, CentOS, and Windows (server & desktop).
 
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself. 
+I also manage and maintain a Python PKCS11 interface library, which is based on ctypes. 
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[strawac1@gmail.com](mailto:strawac1@gmail.com)

@@ -1,3 +1,9 @@
+---
+layout: post
+title: Exporting Environment Variables per-process in GNU Parallel
+published: true
+---
+
 # Exporting Environment Variables per-process in GNU Parallel
 
 ## The Problem
