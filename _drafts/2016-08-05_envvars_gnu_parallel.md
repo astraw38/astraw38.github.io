@@ -7,6 +7,8 @@ parallel will pick up the current environment variables, which means getting dif
 Attempts 1-3 all were using environment variables as the command input (stored per-line in a file)
 
 Space delineated with `parallel 'export {}'` fails, created processes with `a=1\ b=2` in the environment variables. 
+
+Contents of `test_envs`:
 ```bash
 a=1 b=2
 a=3 b=4
@@ -23,7 +25,7 @@ Job #2: a=3 b=4 - b=
 Job #3: a=5 b=6 - b=
 ```
 
-Note how `b` is not set in any of the processes. Semi-colon delineated also fails for the same reason. 
+Note how `b` is not set in any of the processes. Semi-colon delineated environment variables also fails for the same reason. 
 
 ## The solution
 
