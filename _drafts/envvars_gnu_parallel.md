@@ -1,0 +1,55 @@
+# Exporting Environment Variables per-process in GNU Parallel
+
+## The Problem
+
+I want to have different environment variables for each process/job in GNU Parallel. When run locally, each process in GNU
+parallel will pick up the current environment variables, which means getting different env vars per-process was more complicated.
+Attempts 1-3 all were using environment variables as the command input (stored per-line in a file)
+
+Space delineated with `parallel 'export {}'` fails, created process with `a=1\ b=2` in the environment variables. 
+```bash
+a=1 b=2
+a=3 b=4
+```
+
+Semi-colon delineated also fails for the same reason. 
+
+## The solution
+
+Create properties files! 
+
+If you want to have X subprocesses, create X env files, with the desired environment variables space-separated on the first line. 
+
+Example `env_1`:
+```bash
+a=1 b=1
+```
+
+`env_2`:
+```bash
+a=2 b=2
+```
+
+And so on. Then, when you form your parallel command, include the following at the start:
+
+`'export $(cat env_{#})'`
+
+Final example:
+
+```bash
+seq 1 10 | parallel --tagstring="Job #{#}: " 'export $(cat env_{#});echo a=$a - b=$b'
+```
+
+Will output:
+```
+Job #1:         a=1 - b=1
+Job #2:         a=2 - b=2
+Job #3:         a=3 - b=3
+Job #4:         a=4 - b=4
+Job #5:         a=5 - b=5
+Job #6:         a=6 - b=6
+Job #7:         a=7 - b=7
+Job #8:         a=8 - b=8
+Job #9:         a=9 - b=9
+Job #10:        a=10 - b=10
+```
