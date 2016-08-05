@@ -1,7 +1,15 @@
 # general configuration
-url: http://excentris.net
+url: http://astraw38.github.io
 baseurl: ''
 
+github: [metadata]
+kramdown:
+ input: GFM
+ hard_wrap: false
+gems:
+ - jekyll-coffeescript
+ - jekyll-paginate
+ 
 # compass configuration
 compass:
   # an avatar or logo (optional)
