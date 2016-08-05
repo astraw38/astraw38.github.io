@@ -30,6 +30,7 @@ Note how `b` is not set in any of the processes. Semi-colon delineated also fail
 Create properties files! 
 
 If you want to have X subprocesses, create X env files, with the desired environment variables space-separated on the first line. 
+You can use the job # to access files-per-process. 
 
 `env_1`:
 ```bash
