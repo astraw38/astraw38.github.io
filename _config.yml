@@ -1,8 +1,8 @@
 # general configuration
 url: http://astraw38.github.io
 baseurl: ''
-name: 'Python Test Blog #38'
-description: "Python & Linux automated testing"
+name: 'Decodest'
+description: "Python & Linux automated testing blog"
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png
