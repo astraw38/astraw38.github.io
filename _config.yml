@@ -43,3 +43,5 @@ footer-links:
   github: astraw38
   rss: hi # just type anything here for a working RSS icon
   twitter: LuvlyOvipositor
+
+theme: jekyll-theme-cayman
