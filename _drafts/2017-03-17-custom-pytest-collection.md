@@ -1,10 +1,20 @@
 ---
 layout: post
-title: Customizing Pytest Collection
+title: Data Driven Pytest
 published: false
 ---
 
-# Customing Pytest Collection
+# Data Driven Pytest
+
+As a tester, I have found that there is a huge amount of testing that is done using the exact same process, only varying data inputs and validating the output. 
+
+The most basic method in pytest of running various data through a single test process is to use *parametrization*. You can parametrize fixtures or test functions, but you still need to generate the data yourself and update it as your product and tests change. One amazing tool to automatically generate a wide variety of data is [Hypothesis](https://hypothesis.readthedocs.io/en/latest/), but it has its limitations.
+
+At my work, I had a large amount of pre-existing test data that I wanted to integrate into our testing framework. I found that our test data did not integrate well with the existing methods of generating tests (raw parametrization or ``pytest_generate_tests``), leading me on a journey far into the internals of pytest to figure out how to influence test collection methods and order. 
+
+
+In the examples below I show some various ways to read in external data as tests in Pytest, ranging from the easist to the more difficult (but most flexible). 
+
 
 ## Examples
 
