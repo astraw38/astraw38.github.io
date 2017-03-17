@@ -8,18 +8,55 @@ published: false
 
 ## Examples
 
+### Raw parametrization
 
+This is useful if you have your data accessible at module load time, but can lead to 
+all of your tests failing to run with a collection failure. 
+
+Note that if your fixture is in a conftest, then the ``os.listdir`` will be **executed** long before 
+your commandline options are parsed. If you need to delay the parametrization of the tests then use
+``pytest_generate_tests`` (example below). 
+
+```py
+import pytest
+import os
+import json
+
+TEST_DATA_LOC = "..{}testdata".format(os.path.sep)
+
+
+@pytest.fixture(scope='function', params=os.listdir(TEST_DATA_LOC))
+def json_data(request):
+    with open(os.path.join(TEST_DATA_LOC, request.param)) as jdata:
+         yield jdata
+
+
+def test_json_load(json_data):
+    json.load(json_data)
+
+```
+
+Output:
+```
+test_fixture.py::test_json_load[array.json] PASSED
+test_fixture.py::test_json_load[glossary.json] PASSED
+test_fixture.py::test_json_load[nested.json] PASSED
+```
 
 ### Using pytest_generate_tests
 
-The easiest method to generate tests from existing data is to use 
+This is effectively the same as above, but parametrization of the fixture is delayed until the ``pytest_generate_tests`` hook
+is called. 
+
+``if 'json_file' in metafunc.fixturenames`` is necessary if you have your ``pytest_generate_tests`` hook in a conftest that is above
+multiple test files that don't all use that fixture. 
 
 ```py
 import pytest
 import json
 import os
 
-TEST_DATA_LOC = "testdata"
+TEST_DATA_LOC = "..{}testdata".format(os.path.sep)
 
 
 def pytest_generate_tests(metafunc):
@@ -36,10 +73,16 @@ def json_file(request):
         yield myf
 
 
-class TestJson(object):
-    def test_individual_json(self, json_file):
-        json.load(json_file)
+def test_json_load(json_file):
+    json.load(json_file)
 
+```
+
+Output:
+```
+test_generate_tests.py::test_json_load[array_json] PASSED
+test_generate_tests.py::test_json_load[glossary_json] PASSED
+test_generate_tests.py::test_json_load[nested_json] PASSED
 ```
 
 ### Manual collection
@@ -47,8 +90,8 @@ class TestJson(object):
 We can influence how tests are created as well as their ordering by overriding internal pytest objects 
 and implementing the ``collect()`` function as below. 
 
-This is useful if you'd prefer have external names of test functions or influence ordering of tests within a test
-class.
+This is useful if you'd prefer have external names of test functions (instead of a single testname + the params) or need to influence ordering of tests within a test class.
+
 
 ``conftest.py``
 ```py
@@ -116,4 +159,12 @@ from manual_collection.mixin import JsonTesterMixin
 class TestJson(JsonTesterMixin):
     TESTDATA = "..{0}testdata{0}*".format(os.path.sep)
 
+```
+
+Output:
+
+```
+test_collection.py::TestJson::test_nested_json <- mixin.py PASSED
+test_collection.py::TestJson::test_glossary_json <- mixin.py PASSED
+test_collection.py::TestJson::test_array_json <- mixin.py PASSED
 ```
